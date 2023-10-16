@@ -2,21 +2,21 @@
 [[https://ethernaut.openzeppelin.com/][Ethernaut CTF]] challenges solutions using Solidity and Foundry.
 
 * Install
-1. Clone the repo and install dependencies:
-   #+begin_src sh
-   git clone git@github.com:gabr1sr/ethernaut-solutions.git
-   forge install
-   #+end_src
+Clone the repo and install dependencies:
+#+begin_src sh
+git clone git@github.com:gabr1sr/ethernaut-solutions.git
+forge install
+#+end_src
 
-2. Copy ~.env.example~ file to ~.env~, open and set environment variables:
-   #+begin_src sh
-   cp .env.example .env
-   #+end_src
+Copy ~.env.example~ file to ~.env~, open and set environment variables:
+#+begin_src sh
+cp .env.example .env
+#+end_src
 
-3. Compile contracts:
-   #+begin_src sh
-   forge build
-   #+end_src
+Compile contracts:
+#+begin_src sh
+forge build
+#+end_src
 
 * Running Scripts
 Choose a challenge, change the address and run the respective challenge script:
