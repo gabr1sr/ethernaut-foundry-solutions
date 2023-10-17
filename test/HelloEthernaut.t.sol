@@ -11,7 +11,7 @@ contract HelloEthernautTest is Test {
 	vm.createSelectFork(vm.rpcUrl("sepolia"));
     }
 
-    function testAddress() external {
+    function testSolveChallenge() external {
         string memory password = helloEthernaut.password();
 	helloEthernaut.authenticate(password);
 	assert(helloEthernaut.getCleared());
