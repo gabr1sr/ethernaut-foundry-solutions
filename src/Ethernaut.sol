@@ -5,8 +5,8 @@ import {Ownable} from "openzeppelin-contracts/access/Ownable.sol";
 import {Level} from "./Level.sol";
 
 contract Ethernaut is Ownable {
-    constructor() Ownable(msg.sender) { }
-    
+    constructor() Ownable(msg.sender) {}
+
     // ----------------------------------
     // Owner interaction
     // ----------------------------------
@@ -30,17 +30,9 @@ contract Ethernaut is Ownable {
 
     mapping(address => EmittedInstanceData) public emittedInstances;
 
-    event LevelInstanceCreatedLog(
-        address indexed player,
-        address indexed instance,
-        address indexed level
-    );
-    
-    event LevelCompletedLog(
-        address indexed player,
-        address indexed instance,
-        address indexed level
-    );
+    event LevelInstanceCreatedLog(address indexed player, address indexed instance, address indexed level);
+
+    event LevelCompletedLog(address indexed player, address indexed instance, address indexed level);
 
     function createLevelInstance(Level _level) public payable returns (address) {
         // Ensure level is registered.
@@ -50,25 +42,18 @@ contract Ethernaut is Ownable {
         address instance = _level.createInstance{value: msg.value}(msg.sender);
 
         // Store emitted instance relationship with player and level.
-        emittedInstances[instance] = EmittedInstanceData(
-            msg.sender,
-            _level,
-            false
-        );
+        emittedInstances[instance] = EmittedInstanceData(msg.sender, _level, false);
 
         // Retrieve created instance via logs.
         emit LevelInstanceCreatedLog(msg.sender, instance, address(_level));
 
-	return instance;
+        return instance;
     }
 
     function submitLevelInstance(address payable _instance) public returns (bool) {
         // Get player and level.
         EmittedInstanceData storage data = emittedInstances[_instance];
-        require(
-            data.player == msg.sender,
-            "This instance doesn't belong to the current user"
-        ); // instance was emitted for this player
+        require(data.player == msg.sender, "This instance doesn't belong to the current user"); // instance was emitted for this player
         require(data.completed == false, "Level has been completed already"); // not already submitted
 
         // Have the level check the instance.
@@ -79,7 +64,7 @@ contract Ethernaut is Ownable {
             // Notify success via logs.
             emit LevelCompletedLog(msg.sender, _instance, address(data.level));
 
-	    return true;
+            return true;
         } else {
             return false;
         }

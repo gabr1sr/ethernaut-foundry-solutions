@@ -11,8 +11,8 @@ abstract contract DSEthernautTest is DSTest {
     address public levelAddress;
 
     function setUp() public {
-	ethernaut = new Ethernaut();
-	setUpLevel();
+        ethernaut = new Ethernaut();
+        setUpLevel();
     }
 
     function setUpLevel() public virtual {}

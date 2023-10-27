@@ -10,11 +10,11 @@ contract CoinFlipScript is Script {
     CoinFlipAttack public attacker = CoinFlipAttack(payable(0xFC2eb5fE84605d681f67c55323c307AD4A6FB48D));
 
     function run() external {
-	vm.startBroadcast();
-	console.log("Consecutive wins:", instance.consecutiveWins());
-	console.log("Attacking...");
-	attacker.attack();
-	console.log("New consecutive wins:", instance.consecutiveWins());
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        console.log("Consecutive wins:", instance.consecutiveWins());
+        console.log("Attacking...");
+        attacker.attack();
+        console.log("New consecutive wins:", instance.consecutiveWins());
+        vm.stopBroadcast();
     }
 }

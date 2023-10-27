@@ -7,14 +7,14 @@ import {Fallout} from "../src/levels/Fallout.sol";
 
 contract FalloutTest is DSEthernautTest {
     function setUpLevel() public override {
-	FalloutFactory factory = new FalloutFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        FalloutFactory factory = new FalloutFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveFallout() public {
-	Fallout instance = Fallout(payable(levelAddress));
-	instance.Fal1out();
-	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+        Fallout instance = Fallout(payable(levelAddress));
+        instance.Fal1out();
+        assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }

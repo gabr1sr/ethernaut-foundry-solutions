@@ -9,9 +9,9 @@ contract CoinFlipAttackScript is Script {
     CoinFlipAttack public attacker;
 
     function run() external {
-	vm.startBroadcast();
-	attacker = new CoinFlipAttack(coinFlipAddress);
-	console.log("CoinFlipAttack Contract deployed to:", address(attacker));
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        attacker = new CoinFlipAttack(coinFlipAddress);
+        console.log("CoinFlipAttack Contract deployed to:", address(attacker));
+        vm.stopBroadcast();
     }
 }

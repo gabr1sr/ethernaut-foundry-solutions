@@ -8,11 +8,11 @@ contract HelloEthernautScript is Script {
     Instance public instance = Instance(payable(0x4Ed7480a70c9ad829F279d17785b9FAA7cD78F80));
 
     function run() external {
-	vm.startBroadcast();
-	string memory password = instance.password();
-	console.log("The password is:", password);
-	instance.authenticate(password);
-	console.log("Cleared:", instance.getCleared());
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        string memory password = instance.password();
+        console.log("The password is:", password);
+        instance.authenticate(password);
+        console.log("Cleared:", instance.getCleared());
+        vm.stopBroadcast();
     }
 }
