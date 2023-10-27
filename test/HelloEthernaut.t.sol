@@ -1,19 +1,21 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.21;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-import {Test} from "forge-std/Test.sol";
-import {Instance} from "../src/HelloEthernaut.sol";
+import {EthernautTest} from "./utils/EthernautTest.sol";
+import {HelloEthernautFactory} from "../src/factories/HelloEthernautFactory.sol";
+import {Instance} from "../src/levels/HelloEthernaut.sol";
 
-contract HelloEthernautTest is Test {
-    Instance public helloEthernaut = Instance(0x51b12ebF42043BaCd700ef81860Eb771B0f1c866);
-
-    function setUp() external {
-	vm.createSelectFork(vm.rpcUrl("sepolia"));
+contract HelloEthernautTest is EthernautTest {
+    function setUpLevel() public override {
+	HelloEthernautFactory factory = new HelloEthernautFactory();
+	ethernaut.registerLevel(factory);
+	levelAddress = ethernaut.createLevelInstance(factory);
     }
 
-    function testSolveChallenge() external {
-        string memory password = helloEthernaut.password();
-	helloEthernaut.authenticate(password);
-	assert(helloEthernaut.getCleared());
+    function testSolveHelloEthernaut() public {
+	Instance instance = Instance(payable(levelAddress));
+	string memory password = instance.password();
+	instance.authenticate(password);
+	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }

