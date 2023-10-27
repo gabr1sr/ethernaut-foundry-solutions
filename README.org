@@ -28,5 +28,5 @@ forge script script/HelloEthernaut.s.sol:HelloEthernautScript --private-key $PRI
 * Running Tests
 You can simply run all tests using:
 #+begin_src sh
-make test_all
+forge test -vvvv
 #+end_src
