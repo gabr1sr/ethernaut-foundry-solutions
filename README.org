@@ -1,10 +1,10 @@
-#+title: Ethernaut Solutions
-[[https://ethernaut.openzeppelin.com/][Ethernaut CTF]] challenges solutions using Solidity and Foundry.
+#+title: Ethernaut Foundry Solutions
+[[https://ethernaut.openzeppelin.com/][Ethernaut]] CTF challenges solutions using [[https://soliditylang.org/][Solidity]] and [[https://github.com/foundry-rs/foundry][Foundry]].
 
 * Install
 Clone the repo and install dependencies:
 #+begin_src sh
-git clone git@github.com:gabr1sr/ethernaut-solutions.git
+git clone https://github.com/gabr1sr/ethernaut-foundry-solutions.git
 forge install
 #+end_src
 
