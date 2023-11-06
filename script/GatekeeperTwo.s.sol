@@ -10,12 +10,12 @@ contract GatekeeperTwoScript is Script {
     GatekeeperTwoAttack attacker;
 
     function run() external {
-	vm.startBroadcast();
-	console.log("GatekeeperTwo Contract initial entrant:", instance.entrant());
-	attacker = new GatekeeperTwoAttack(address(instance));
-	console.log("GatekeeperTwoAttack Contract deployed to:", address(attacker));
-	console.log("Attacking...");
-	console.log("GatekeeperTwo Contract new entrant:", instance.entrant());
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        console.log("GatekeeperTwo Contract initial entrant:", instance.entrant());
+        attacker = new GatekeeperTwoAttack(address(instance));
+        console.log("GatekeeperTwoAttack Contract deployed to:", address(attacker));
+        console.log("Attacking...");
+        console.log("GatekeeperTwo Contract new entrant:", instance.entrant());
+        vm.stopBroadcast();
     }
 }

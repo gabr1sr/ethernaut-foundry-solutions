@@ -7,16 +7,16 @@ import {PreservationAttack} from "../src/attacks/PreservationAttack.sol";
 
 contract PreservationTest is EthernautTest {
     function setUpLevel() public override {
-	PreservationFactory factory = new PreservationFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        PreservationFactory factory = new PreservationFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolvePreservation() public {
-	vm.startPrank(address(this));
-	PreservationAttack attacker = new PreservationAttack();
-	attacker.attack(levelAddress);
-	vm.stopPrank();
-	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+        vm.startPrank(address(this));
+        PreservationAttack attacker = new PreservationAttack();
+        attacker.attack(levelAddress);
+        vm.stopPrank();
+        assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }

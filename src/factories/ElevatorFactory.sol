@@ -6,13 +6,13 @@ import {Elevator} from "../levels/Elevator.sol";
 
 contract ElevatorFactory is Level {
     function createInstance(address _player) public payable override returns (address) {
-	_player;
-	Elevator instance = new Elevator();
-	return address(instance);
+        _player;
+        Elevator instance = new Elevator();
+        return address(instance);
     }
 
     function validateInstance(address payable _instance, address) public view override returns (bool) {
-	Elevator instance = Elevator(_instance);
-	return instance.top();
+        Elevator instance = Elevator(_instance);
+        return instance.top();
     }
 }

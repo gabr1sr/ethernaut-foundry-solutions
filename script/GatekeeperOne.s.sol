@@ -10,13 +10,13 @@ contract GatekeeperOneScript is Script {
     GatekeeperOneAttack attacker;
 
     function run() external {
-	vm.startBroadcast();
-	attacker = new GatekeeperOneAttack();
-	console.log("GatekeeperOneAttack Contract deployed to:", address(attacker));
-	console.log("GatekeeperOne Contract initial entrant:", instance.entrant());
-	console.log("Attacking...");
-	attacker.attack(address(instance));
-	console.log("GatekeeperOne Contract new entrant:", instance.entrant());
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        attacker = new GatekeeperOneAttack();
+        console.log("GatekeeperOneAttack Contract deployed to:", address(attacker));
+        console.log("GatekeeperOne Contract initial entrant:", instance.entrant());
+        console.log("Attacking...");
+        attacker.attack(address(instance));
+        console.log("GatekeeperOne Contract new entrant:", instance.entrant());
+        vm.stopBroadcast();
     }
 }

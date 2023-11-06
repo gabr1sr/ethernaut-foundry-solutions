@@ -8,14 +8,14 @@ import {ElevatorAttack} from "../src/attacks/ElevatorAttack.sol";
 
 contract ElevatorTest is EthernautTest {
     function setUpLevel() public override {
-	ElevatorFactory factory = new ElevatorFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        ElevatorFactory factory = new ElevatorFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveElevator() public {
-	ElevatorAttack attacker = new ElevatorAttack();
-	attacker.attack(levelAddress);
-	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+        ElevatorAttack attacker = new ElevatorAttack();
+        attacker.attack(levelAddress);
+        assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }

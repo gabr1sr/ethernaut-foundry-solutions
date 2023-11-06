@@ -7,14 +7,14 @@ import {TelephoneAttack} from "../src/attacks/TelephoneAttack.sol";
 
 contract TelephoneTest is EthernautTest {
     function setUpLevel() public override {
-	TelephoneFactory factory = new TelephoneFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        TelephoneFactory factory = new TelephoneFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveTelephone() public {
-	TelephoneAttack attacker = new TelephoneAttack(levelAddress);
-	attacker.attack();
-	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+        TelephoneAttack attacker = new TelephoneAttack(levelAddress);
+        attacker.attack();
+        assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }

@@ -6,11 +6,11 @@ import {NaughtCoin} from "../levels/NaughtCoin.sol";
 
 contract NaughtCoinFactory is Level {
     function createInstance(address _player) public payable override returns (address) {
-	return address(new NaughtCoin(_player));
+        return address(new NaughtCoin(_player));
     }
 
     function validateInstance(address payable _instance, address _player) public view override returns (bool) {
         NaughtCoin instance = NaughtCoin(_instance);
-	return instance.balanceOf(_player) == 0;
+        return instance.balanceOf(_player) == 0;
     }
 }

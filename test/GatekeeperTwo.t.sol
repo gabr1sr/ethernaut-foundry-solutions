@@ -9,13 +9,13 @@ contract GatekeeperTwoTest is EthernautTest {
     GatekeeperTwoFactory public factory;
 
     function setUpLevel() public override {
-	factory = new GatekeeperTwoFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        factory = new GatekeeperTwoFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveGatekeeperTwo() public {
-	new GatekeeperTwoAttack(levelAddress);
-	assert(factory.validateInstance(payable(levelAddress), tx.origin));
+        new GatekeeperTwoAttack(levelAddress);
+        assert(factory.validateInstance(payable(levelAddress), tx.origin));
     }
 }

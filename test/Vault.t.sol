@@ -7,15 +7,15 @@ import {Vault} from "../src/levels/Vault.sol";
 
 contract VaultTest is EthernautTest {
     function setUpLevel() public override {
-	VaultFactory factory = new VaultFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        VaultFactory factory = new VaultFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveVault() public {
-	Vault instance = Vault(payable(levelAddress));
-	bytes32 password = vm.load(levelAddress, bytes32(uint256(1)));
-	instance.unlock(password);
-	assert(ethernaut.submitLevelInstance(payable(levelAddress)));
+        Vault instance = Vault(payable(levelAddress));
+        bytes32 password = vm.load(levelAddress, bytes32(uint256(1)));
+        instance.unlock(password);
+        assert(ethernaut.submitLevelInstance(payable(levelAddress)));
     }
 }

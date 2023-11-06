@@ -9,14 +9,14 @@ contract GatekeeperOneTest is EthernautTest {
     GatekeeperOneFactory public factory;
 
     function setUpLevel() public override {
-	factory = new GatekeeperOneFactory();
-	ethernaut.registerLevel(factory);
-	levelAddress = ethernaut.createLevelInstance(factory);
+        factory = new GatekeeperOneFactory();
+        ethernaut.registerLevel(factory);
+        levelAddress = ethernaut.createLevelInstance(factory);
     }
 
     function testSolveGatekeeperOne() public {
-	GatekeeperOneAttack attacker = new GatekeeperOneAttack();
-	attacker.attack(levelAddress);
-	assert(factory.validateInstance(payable(levelAddress), tx.origin));
+        GatekeeperOneAttack attacker = new GatekeeperOneAttack();
+        attacker.attack(levelAddress);
+        assert(factory.validateInstance(payable(levelAddress), tx.origin));
     }
 }

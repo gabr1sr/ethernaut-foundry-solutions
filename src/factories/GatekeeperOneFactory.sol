@@ -6,13 +6,13 @@ import {GatekeeperOne} from "../levels/GatekeeperOne.sol";
 
 contract GatekeeperOneFactory is Level {
     function createInstance(address _player) public payable override returns (address) {
-	_player;
-	GatekeeperOne instance = new GatekeeperOne();
-	return address(instance);
+        _player;
+        GatekeeperOne instance = new GatekeeperOne();
+        return address(instance);
     }
 
     function validateInstance(address payable _instance, address _player) public view override returns (bool) {
-	GatekeeperOne instance = GatekeeperOne(_instance);
-	return instance.entrant() == _player;
+        GatekeeperOne instance = GatekeeperOne(_instance);
+        return instance.entrant() == _player;
     }
 }

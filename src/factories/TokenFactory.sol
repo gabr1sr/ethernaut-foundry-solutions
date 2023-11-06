@@ -7,15 +7,15 @@ import {Token} from "../levels/Token.sol";
 contract TokenFactory is Level {
     uint256 public supply = 21000000;
     uint256 public playerSupply = 20;
-    
+
     function createInstance(address _player) public payable override returns (address) {
-	Token token = new Token(supply);
-	token.transfer(_player, playerSupply);
-	return address(token);
+        Token token = new Token(supply);
+        token.transfer(_player, playerSupply);
+        return address(token);
     }
 
-    function validateInstance(address payable _instance, address _player) override public returns (bool) {
-	Token token = Token(_instance);
-	return token.balanceOf(_player) > playerSupply;
+    function validateInstance(address payable _instance, address _player) public override returns (bool) {
+        Token token = Token(_instance);
+        return token.balanceOf(_player) > playerSupply;
     }
 }

